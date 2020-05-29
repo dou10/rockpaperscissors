@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            let playerscore = 0
+            let computerscore = 0
+            let message = ''
+
+            var moves = [
+                'ROCK',
+                'PAPER',
+                'SCISSOR'
+            ]
+            //Choses the cpu move out of the moves array
+            function computerPlay(){
+                let cpumove = moves[Math.floor(Math.random() * moves.length)];
+                return cpumove
+            }
+            console.log(computerPlay())
+
+            //Compares user input to cpu move
+            function playRound(playerSelection,computerSelection){
+                if (playerSelection.toUpperCase() == computerSelection){
+                    return ('You both picked the same move - TIE');
+                }
+                else {
+                    switch (computerSelection){
+                        case 'ROCK':
+                        if (playerSelection.toUpperCase() == 'PAPER' ){
+                            playerscore++;
+                            message = 'You won! Paper beats rock!'
+                            return message;
+                        }
+                        else if (playerSelection.toUpperCase() == 'SCISSOR' ){
+                            computerscore++;
+                            message = 'You lost! Rock beats scissor'
+                            return message;
+                        }
+                        break;
+
+                        case 'PAPER':
+                        if (playerSelection.toUpperCase() == 'ROCK' ){
+                            computerscore++;
+                            message = 'You lost! Paper beats rock!'
+                            return message;
+                        }
+                        else if (playerSelection.toUpperCase() == 'SCISSOR' ){
+                            playerscore++;
+                            message = 'You won! Scissor beats paper'
+                            return message;
+                        }
+                        break;
+
+                        case 'SCISSOR':
+                        if (playerSelection.toUpperCase() == 'PAPER' ){
+                            computerscore++;
+                            message = 'You lost! Paper beats Scissors!'
+                            return message;
+                        }
+                        else if (playerSelection.toUpperCase() == 'ROCK' ){
+                            playerscore++;
+                            message = 'You won! Scissor beats paper'
+                            return message;
+                        }
+                        break;
+                    }
+                }
+            }
+            // Runs 5 rounds of rock paper scissor
+            // Determines who won after five rounds.
+            function game(){
+                var i;
+                for (i = 0; i < 5; i++){
+                    let playerSelect = prompt("Pick a move: ROCK  PAPER  SCISSOR");
+                    let cpuSelection = computerPlay();
+                    console.log(playerSelect)
+                    console.log(cpuSelection)
+                    console.log(playRound(playerSelect, cpuSelection));
+                    console.log('Player score: ' + playerscore + ' and cpu score is: ' + computerscore)
+                }
+
+                if(playerscore > computerscore){
+                    console.log('The human always wins')
+                }
+
+                else{
+                    console.log('Robot won')
+                }
+            }
+
+            
+            game();
+            
+
+        </script>
+
+    </body>
+</html>
